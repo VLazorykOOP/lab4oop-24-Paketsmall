@@ -29,10 +29,11 @@ public:
 	~VectorFloat() {
 		delete[]data;
 	}
-	void operator++() {
+	VectorFloat& operator++() {
 		for (int i = 0; i < this->size;++i) {
 			data[i] += 1.0;
 		}
+		return *this;
 	}
 	void operator--() {
 		for (int i = 0; i < this->size; ++i) {
@@ -42,12 +43,12 @@ public:
 	bool operator!() {
 		return this->size == 0;
 	}
-	VectorFloat operator-() {
-		VectorFloat result(this->size);
+	VectorFloat& operator-() {
+		
 		for (int i = 0; i < this->size;++i) {
-			result.data[i] = -this->data[i];
+			data[i] = -this->data[i];
 		}
-		return result;
+		return *this;
 	}
     VectorFloat& operator=(const VectorFloat& rhs) {
         if (this != &rhs) {
@@ -191,7 +192,7 @@ public:
 int main() {
 
     VectorFloat v1(3, 1.5);
-    VectorFloat v2(3, 2.5);
+    VectorFloat v2(3, 2.5);  v1 = ++i;
     cout << "v1: " << v1 << std::endl;
     cout << "v2: " << v2 << std::endl;
 
